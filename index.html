@@ -40,32 +40,38 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <h5 class="card-title">Escribe la información solicitada</h5>
-            <form @submit.prevent="handleSubmit">
-              <div class="mb-2">
-                <label class="form-label">Nombre</label>
-                <input v-model="form.nombre" class="form-control" type="email" />
-                <div v-if="errors.nombre" class="form-text text-danger">{{ errors.nombre }}</div>
-              </div>
-              <div class="mb-2">
-                <label class="form-label">Email</label>
-                <input v-model="form.email" class="form-control" type="text" />
-                <div v-if="errors.email" class="form-text text-danger">{{ errors.email }}</div>
-              </div>
-              <div class="mb-2">
-                <label class="form-label">Prioridad</label>
-                <select v-model="form.prioridad" class="form-select">
-                  <option value="baja">Baja</option>
-                  <option value="normal">Normal</option>
-                  <option value="alta">Alta</option>
-                </select>
-              </div>
-              <div class="mb-2">
-                <label class="form-label">Mensaje o Falla</label>
-                <textarea v-model="form.mensaje" rows="4" class="form-control"></textarea>
-                <div v-if="errors.mensaje" class="form-text text-danger">{{ errors.mensaje }}</div>
-              </div>
-              <button class="btn btn-primary" type="submit">Enviar</button>
-            </form>
+
+
+            <form novalidate @submit.prevent="handleSubmit">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" v-model="form.nombre">
+    <div class="text-danger mt-1" v-if="errors.nombre">{{ errors.nombre }}</div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" v-model="form.email">
+    <div class="text-danger mt-1" v-if="errors.email">{{ errors.email }}</div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="prioridad" class="form-label">Prioridad</label>
+    <select class="form-select" id="prioridad" v-model="form.prioridad">
+      <option value="baja">Baja</option>
+      <option value="normal">Normal</option>
+      <option value="alta">Alta</option>
+    </select>
+  </div>
+  
+  <div class="mb-3">
+    <label for="mensaje" class="form-label">Mensaje</label>
+    <textarea class="form-control" id="mensaje" rows="3" v-model="form.mensaje"></textarea>
+    <div class="text-danger mt-1" v-if="errors.mensaje">{{ errors.mensaje }}</div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Enviar Ticket</button>
+</form>
           </div>
         </div>
       </div>
